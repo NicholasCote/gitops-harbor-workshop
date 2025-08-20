@@ -1,6 +1,10 @@
 # GitOps & Container Registry workshop
 
-This repository contains a preconfigured environment through GitHub Codespaces.  
+This repository contains a preconfigured environment through GitHub Codespaces that is used to run a workshop to explore GitOps, GitHub Actions, and a Harbor Container Registry.
+
+This workshop builds on the information provided in a previous workshop who's content can be found at this link https://github.com/NicholasCote/k8s-argo-codespace.
+
+For more information about the CIRRUS platform, see [NCAR HPC Documentation - CIRRUS](https://ncar-hpc-docs.readthedocs.io/en/latest/compute-systems/cirrus/guides/01-intro/)
 
 ## GitOps
 
@@ -67,6 +71,9 @@ GitHub Actions needs secure access to your container registry credentials:
 9. Click "Add secret"
 
 Your workflow will now be able to authenticate with the container registry securely.
+## GitHub Actions security settings
+
+When running GitHub Actions workflows, it's important to be aware of security settings that can be set at the repository level. For more details on common best practices, see [CIRRUS - GitHub Actions Best Practices](https://ncar-hpc-docs.readthedocs.io/en/latest/compute-systems/cirrus/guides/05-github-actions/best-practices/) 
 
 ## Codespace & devcontainer
 
@@ -228,6 +235,15 @@ jobs:
 **Triggers:**
 - `workflow_dispatch`: Allows manual triggering from the GitHub Actions tab
 - `push` with `paths`: Automatically runs when changes are made to the `flask-app/` directory on the main branch
+
+**runs-on:**
+This specifies what operating system your GitHub Action will run on.
+- **GitHub Provided Systems:**
+  - `ubuntu-latest` - Latest Ubuntu system
+  - `windows-latest` - Latest Windows system
+  - `macos-latest` - Latest macOS system
+
+> **Note:** If you need workflows that require more computational resources, access to Glade, or specialized hardware like GPUs, see [CIRRUS GitHub Actions Runners](https://ncar-hpc-docs.readthedocs.io/en/latest/compute-systems/cirrus/guides/05-github-actions/scale-sets/).
 
 **Key Steps:**
 1. **Checkout**: Downloads your repository code
